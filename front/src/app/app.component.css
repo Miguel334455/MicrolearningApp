@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+}
+
+
+.app-content {
+  width: 100%;
+}
+

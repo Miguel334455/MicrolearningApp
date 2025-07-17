@@ -1,0 +1,36 @@
+.home {
+
+  background: #456882;
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Para ocupar toda la altura */
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  align-items: center;    /* Centra horizontalmente */
+  text-align: center;
+  padding: 2rem;
+  gap: 2rem; /* Espacio entre elementos */
+}
+
+.div1 {
+  color: white; /* Para que el texto se vea */
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.div13 img {
+  width: 200px; /* Ajusta según tu diseño */
+  border-radius: 3rem;
+  padding: 1rem;
+  border: 2px solid rgba(14, 46, 192, 0.1);
+}
+
+.div14 {
+  color: white; /* Para que el texto se vea */
+  max-width: 600px; /* Controla el ancho del párrafo */
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
