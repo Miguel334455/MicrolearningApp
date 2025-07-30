@@ -2139,6 +2139,22 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "OpenAI/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "System.ClientModel": "1.4.2"
+        },
+        "compile": {
+          "lib/net8.0/OpenAI.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/OpenAI.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "type": "package",
         "dependencies": {
@@ -2202,19 +2218,19 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "System.ClientModel/1.0.0": {
+      "System.ClientModel/1.4.2": {
         "type": "package",
         "dependencies": {
-          "System.Memory.Data": "1.0.2",
-          "System.Text.Json": "4.7.2"
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "System.Memory.Data": "6.0.1"
         },
         "compile": {
-          "lib/net6.0/System.ClientModel.dll": {
+          "lib/net8.0/System.ClientModel.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/System.ClientModel.dll": {
+          "lib/net8.0/System.ClientModel.dll": {
             "related": ".xml"
           }
         }
@@ -2516,21 +2532,20 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
-      "System.Memory.Data/1.0.2": {
+      "System.Memory.Data/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Text.Encodings.Web": "4.7.2",
-          "System.Text.Json": "4.6.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Memory.Data.dll": {
+          "lib/net6.0/System.Memory.Data.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Memory.Data.dll": {
+          "lib/net6.0/System.Memory.Data.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -6763,6 +6778,26 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "OpenAI/2.2.0": {
+      "sha512": "MSFrQXZsgdwcJq3b8159oA0sYRJk0Io5Rg+MhbNs1NFIhwQ7IlSP2jao7V0NqBqCRfVhvoNxPZeVOqgbOiZ/Nw==",
+      "type": "package",
+      "path": "openai/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "OpenAI.png",
+        "README.md",
+        "lib/net6.0/OpenAI.dll",
+        "lib/net6.0/OpenAI.xml",
+        "lib/net8.0/OpenAI.dll",
+        "lib/net8.0/OpenAI.xml",
+        "lib/netstandard2.0/OpenAI.dll",
+        "lib/netstandard2.0/OpenAI.xml",
+        "openai.2.2.0.nupkg.sha512",
+        "openai.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.6.2": {
       "sha512": "+NB4UYVYN6AhDSjW0IJAd1AGD8V33gemFNLPaxKTtPkHB+HaKAKf9MGAEUPivEWvqeQfcKIw8lJaHq6LHljRuw==",
       "type": "package",
@@ -6865,21 +6900,24 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
-    "System.ClientModel/1.0.0": {
-      "sha512": "I3CVkvxeqFYjIVEP59DnjbeoGNfo/+SZrCLpRz2v/g0gpCHaEMPtWSY0s9k/7jR1rAsLNg2z2u1JRB76tPjnIw==",
+    "System.ClientModel/1.4.2": {
+      "sha512": "goGitN7trB9hoQ01dIpxaSYcruI+lGt/xq471AUv8irFvsIX+4HCqk1pDT/4ZPTLmU6ZUuNzhCb4MJAIwG7+Uw==",
       "type": "package",
-      "path": "system.clientmodel/1.0.0",
+      "path": "system.clientmodel/1.4.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "CHANGELOG.md",
         "DotNetPackageIcon.png",
         "README.md",
+        "analyzers/dotnet/cs/System.ClientModel.SourceGeneration.dll",
         "lib/net6.0/System.ClientModel.dll",
         "lib/net6.0/System.ClientModel.xml",
+        "lib/net8.0/System.ClientModel.dll",
+        "lib/net8.0/System.ClientModel.xml",
         "lib/netstandard2.0/System.ClientModel.dll",
         "lib/netstandard2.0/System.ClientModel.xml",
-        "system.clientmodel.1.0.0.nupkg.sha512",
+        "system.clientmodel.1.4.2.nupkg.sha512",
         "system.clientmodel.nuspec"
       ]
     },
@@ -7336,22 +7374,27 @@
         "version.txt"
       ]
     },
-    "System.Memory.Data/1.0.2": {
-      "sha512": "JGkzeqgBsiZwKJZ1IxPNsDFZDhUvuEdX8L8BDC8N3KOj+6zMcNU28CNN59TpZE/VJYy9cP+5M+sbxtWJx3/xtw==",
+    "System.Memory.Data/6.0.1": {
+      "sha512": "yliDgLh9S9Mcy5hBIdZmX6yphYIW3NH+3HN1kV1m7V1e0s7LNTw/tHNjJP4U9nSMEgl3w1TzYv/KA1Tg9NYy6w==",
       "type": "package",
-      "path": "system.memory.data/1.0.2",
+      "path": "system.memory.data/6.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "CHANGELOG.md",
-        "DotNetPackageIcon.png",
-        "README.md",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Memory.Data.targets",
+        "buildTransitive/netcoreapp3.1/_._",
         "lib/net461/System.Memory.Data.dll",
         "lib/net461/System.Memory.Data.xml",
+        "lib/net6.0/System.Memory.Data.dll",
+        "lib/net6.0/System.Memory.Data.xml",
         "lib/netstandard2.0/System.Memory.Data.dll",
         "lib/netstandard2.0/System.Memory.Data.xml",
-        "system.memory.data.1.0.2.nupkg.sha512",
-        "system.memory.data.nuspec"
+        "system.memory.data.6.0.1.nupkg.sha512",
+        "system.memory.data.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Numerics.Vectors/4.5.0": {
@@ -8183,6 +8226,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.7",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.7",
+      "OpenAI >= 2.2.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -8253,6 +8297,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[8.0.7, )"
+          },
+          "OpenAI": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

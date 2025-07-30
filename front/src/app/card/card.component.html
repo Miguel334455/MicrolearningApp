@@ -1,7 +1,12 @@
 <div class="card">
             
-            <h2>Nombre curso</h2>
-            <p>descripcion curso</p>
-            <h2>calficacion ⭐</h2>
+    <div *ngIf="course">
+        <h2>{{ course.name }}</h2>
+        <p>{{ course.description }}</p>
+        <p><strong>ID categoría:</strong> {{ course.idCategory }}</p>
+    </div>
 
+    <div *ngIf="!course">
+        
+    </div>
 </div>

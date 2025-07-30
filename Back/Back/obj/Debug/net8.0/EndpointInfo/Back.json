@@ -18,7 +18,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Courses"
+                    "$ref": "#/components/schemas/CourseFullDTO"
                   }
                 }
               },
@@ -26,7 +26,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Courses"
+                    "$ref": "#/components/schemas/CourseFullDTO"
                   }
                 }
               },
@@ -34,7 +34,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Courses"
+                    "$ref": "#/components/schemas/CourseFullDTO"
                   }
                 }
               }
@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Courses"
+                "$ref": "#/components/schemas/CreateCourseDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Courses"
+                "$ref": "#/components/schemas/CreateCourseDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Courses"
+                "$ref": "#/components/schemas/CreateCourseDTO"
               }
             }
           }
@@ -71,17 +71,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Courses"
+                  "$ref": "#/components/schemas/Course"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Courses"
+                  "$ref": "#/components/schemas/Course"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Courses"
+                  "$ref": "#/components/schemas/Course"
                 }
               }
             }
@@ -101,7 +101,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -111,17 +111,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Courses"
+                  "$ref": "#/components/schemas/CourseFullDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Courses"
+                  "$ref": "#/components/schemas/CourseFullDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Courses"
+                  "$ref": "#/components/schemas/CourseFullDTO"
                 }
               }
             }
@@ -139,7 +139,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -147,17 +147,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Courses"
+                "$ref": "#/components/schemas/Course"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Courses"
+                "$ref": "#/components/schemas/Course"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Courses"
+                "$ref": "#/components/schemas/Course"
               }
             }
           }
@@ -179,7 +179,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -190,12 +190,41 @@
         }
       }
     },
-    "/WeatherForecast": {
+    "/api/Lessons/info/{subject}": {
+      "post": {
+        "tags": [
+          "Lessons"
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "courseid",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Lessons": {
       "get": {
         "tags": [
-          "WeatherForecast"
+          "Lessons"
         ],
-        "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
             "description": "OK",
@@ -204,7 +233,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/Lesson"
                   }
                 }
               },
@@ -212,7 +241,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/Lesson"
                   }
                 }
               },
@@ -220,11 +249,511 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/Lesson"
                   }
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Lessons"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Lessons/{id}": {
+      "get": {
+        "tags": [
+          "Lessons"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Lessons"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Lessons"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserCourses": {
+      "get": {
+        "tags": [
+          "UserCourses"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserCourse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserCourse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserCourse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UserCourses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeUserToCourseDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeUserToCourseDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeUserToCourseDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserCourses/{id}": {
+      "get": {
+        "tags": [
+          "UserCourses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCourse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCourse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCourse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UserCourses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCourse"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCourse"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCourse"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UserCourses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserWithCoursesDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserWithCoursesDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserWithCoursesDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -232,13 +761,95 @@
   },
   "components": {
     "schemas": {
-      "Courses": {
+      "Course": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCategory": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserCourse"
+            },
+            "nullable": true
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lesson"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseFullDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCategory": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDTO"
+            },
+            "nullable": true
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateCourseDTO": {
+        "type": "object",
+        "properties": {
           "name": {
             "type": "string",
             "nullable": true
@@ -254,24 +865,165 @@
         },
         "additionalProperties": false
       },
-      "WeatherForecast": {
+      "CreateUserDTO": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
+          "name": {
             "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Lesson": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessonDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscribeUserToCourseDTO": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "userCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserCourse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserCourse": {
+        "type": "object",
+        "properties": {
+          "userCourseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserWithCoursesDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDTO"
+            },
             "nullable": true
           }
         },

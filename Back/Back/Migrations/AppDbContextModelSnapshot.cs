@@ -21,13 +21,13 @@ namespace Back.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Back.Models.Courses", b =>
+            modelBuilder.Entity("Back.Models.Course", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -40,7 +40,115 @@ namespace Back.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
+                });
+
+            modelBuilder.Entity("Back.Models.Lesson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("courseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("courseId");
+
+                    b.ToTable("Lesson", (string)null);
+                });
+
+            modelBuilder.Entity("Back.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("Back.Models.UserCourse", b =>
+                {
+                    b.Property<int>("UserCourseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserCourseId"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserCourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCourses", (string)null);
+                });
+
+            modelBuilder.Entity("Back.Models.Lesson", b =>
+                {
+                    b.HasOne("Back.Models.Course", "Course")
+                        .WithMany("Lessons")
+                        .HasForeignKey("courseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Back.Models.UserCourse", b =>
+                {
+                    b.HasOne("Back.Models.Course", "Course")
+                        .WithMany("UserCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Back.Models.User", "User")
+                        .WithMany("UserCourses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Back.Models.Course", b =>
+                {
+                    b.Navigation("Lessons");
+
+                    b.Navigation("UserCourses");
+                });
+
+            modelBuilder.Entity("Back.Models.User", b =>
+                {
+                    b.Navigation("UserCourses");
                 });
 #pragma warning restore 612, 618
         }

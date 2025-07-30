@@ -1,11 +1,9 @@
-﻿namespace Back.Models
+﻿namespace Back.DTOs
 {
-    public class Courses
+    public class CreateCourseDTO
     {
-        public long Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public int IdCategory { get; set; }
-
     }
 }
