@@ -1,12 +1,8 @@
-<div class="card">
-            
-    <div *ngIf="course">
-        <h2>{{ course.name }}</h2>
-        <p>{{ course.description }}</p>
-        <p><strong>ID categoría:</strong> {{ course.idCategory }}</p>
-    </div>
-
-    <div *ngIf="!course">
-        
-    </div>
+<div (click)="onCourseClick()" class="card">
+  <div *ngIf="course">
+    <h2>{{ course.name }}</h2>
+    <p>{{ course.description }}</p>
+  </div>
 </div>
+
+

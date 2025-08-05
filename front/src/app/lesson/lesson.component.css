@@ -1,0 +1,16 @@
+/* src/app/components/lesson/lesson.component.css */
+.lesson-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #f9f9f9;
+}
+
+.lesson-card h2 {
+  margin-top: 0;
+}
+
+.lesson-card .content {
+  margin-top: 1rem;
+}

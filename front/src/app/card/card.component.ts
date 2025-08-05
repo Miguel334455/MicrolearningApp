@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Course, CourseCreateDTO, CourseService } from '../../Services/course.service';
 import { CommonModule } from '@angular/common';
+import { LessonComponent } from '../lesson/lesson.component';
+import { Lesson } from '../../Services/lesson.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -10,13 +13,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './card.component.css'
 })
 export class CardComponent implements OnInit {
-  @Input() course!: Course;
-  
-  constructor(private courseService: CourseService) {}
 
-  ngOnInit() {
-    // Ya no necesitas cargar un curso aquí si lo recibes por @Input
-    console.log('Curso recibido por Input:', this.course);
+  @Input() course!: Course;
+  showlesson: boolean = false;
+
+  fakeLesson: Lesson = {
+    id: 1,
+    content: 'This is a fake lesson content',
+    courseId: this.course?.id || 0 // si el curso ya está definido
+  };
+
+
+  constructor(private courseService: CourseService, private router: Router) {}
+  ngOnInit(): void {
+      
   }
 
   addCourse() {
@@ -31,5 +41,9 @@ export class CardComponent implements OnInit {
       console.log('Course created:', course);
       this.course = course;
     });
+  }
+  
+  onCourseClick() {
+    this.router.navigate(['/course', this.course.id]);
   }
 }

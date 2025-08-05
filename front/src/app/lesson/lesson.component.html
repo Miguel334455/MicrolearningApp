@@ -1,0 +1,13 @@
+<div *ngIf="course">
+  <h1>{{ course.name }}</h1>
+  <p>{{ course.description }}</p>
+
+  <h2>Lecciones</h2>
+  <ul>
+    <li *ngFor="let lesson of lessons">
+      <div [innerHTML]="lesson.content"></div>
+    </li>
+  </ul>
+
+  <p *ngIf="lessons.length === 0">Este curso no tiene lecciones aún.</p>
+</div>
