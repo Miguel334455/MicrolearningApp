@@ -1,0 +1,73 @@
+.personal-category {
+    color: #000;
+    background-color: blue;
+}
+
+.categories{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.searchbar{
+    padding: 0;
+    display: flex;   
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 95%;
+    padding: 2%;
+}
+
+
+.combox{
+    select {
+    appearance: none; /* Quitar estilo nativo */
+    -webkit-appearance: none; /* Safari/Chrome */
+    -moz-appearance: none; /* Firefox */
+
+    background-color: #ffffff; /* Fondo */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 40px 10px 15px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de letra */
+    color: #333; /* Color de texto */
+    cursor: pointer; /* Cursor */
+    width: 200px; /* Ancho fijo, ajustable */
+    transition: border 0.3s ease; /* Transición suave */
+    }
+
+    /* Flecha personalizada usando pseudo-elemento */
+    select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    }
+
+    /* Hover y Focus */
+    select:hover {
+    border-color: #888;
+    }
+
+    select:focus {
+    outline: none;
+    border-color: #555;
+    }
+
+    /* Opcional: eliminar borde feo en Firefox */
+    select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+    }
+}
+
+.search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    
+}

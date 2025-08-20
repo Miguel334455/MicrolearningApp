@@ -1,16 +1,75 @@
-/* src/app/components/lesson/lesson.component.css */
-.lesson-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  background-color: #f9f9f9;
+.lesson-page {
+  background-color: rgb(187, 174, 174);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.lesson-card h2 {
-  margin-top: 0;
+.lesson-container {
+  width: 80%;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 400px;
+  box-shadow: #555 0px 0px 10px;
+  background-color: aliceblue;
 }
 
-.lesson-card .content {
-  margin-top: 1rem;
+
+.lesson-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.lesson-header p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #555;
+}
+
+.lesson-content {
+  margin-top: 30px;
+  text-align: left;
+  line-height: 1.8em;
+  
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.lesson-body {
+  columns: 2;
+  column-gap: 40px;
+  text-align: justify;
+}
+
+.lesson-content h2 {
+  padding-top: 20px;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.lesson-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.subscribe-btn,
+.next-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.subscribe-btn:hover,
+.next-btn:hover {
+  background-color: #f0f0f0;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.02);
 }

@@ -1,0 +1,23 @@
+<div class="personal-category">
+  <div class="searchbar">
+    <div class="search">
+      <h1>categories</h1>
+      <span>({{ courses.length }})</span>
+    </div>
+
+    <div class="combox">
+      <select (change)="onCategoryChange($event)">
+        <option value="" disabled selected>General</option>
+        <option value=1>Historia</option>
+        <option value=2>Ciencia</option>
+        <option value=3>Musica</option>
+        <option value=4>Literatura</option>
+        <option value=5>Cine</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="categories">
+    <app-card *ngFor="let course of courses" [course]="course"></app-card>
+  </div>
+</div>

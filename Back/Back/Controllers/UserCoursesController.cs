@@ -77,8 +77,12 @@ namespace Back.Controllers
         // POST: api/UserCourses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<IActionResult> SubscribeUserToCourse(SubscribeUserToCourseDTO dto)
+        public async Task<IActionResult> SubscribeUserToCourse(SubscribeUserToCourseDTO dto, int userId, int courseId)
         {
+
+            dto.UserId = userId;
+            dto.CourseId = courseId;
+
             // Validar que el usuario y curso existen
             var userExists = await _context.Users.AnyAsync(u => u.Id == dto.UserId);
             var courseExists = await _context.Courses.AnyAsync(c => c.Id == dto.CourseId);

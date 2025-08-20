@@ -1,13 +1,30 @@
-<div *ngIf="course">
-  <h1>{{ course.name }}</h1>
-  <p>{{ course.description }}</p>
+<div class="lesson-page">
+  <div class="lesson-container" *ngIf="course">
+    <!-- Título del curso -->
+    <div class="lesson-header">
+      <h1>{{ course.name }}</h1>
+      <p>{{ course.description }}</p>
+    </div>
 
-  <h2>Lecciones</h2>
-  <ul>
-    <li *ngFor="let lesson of lessons">
-      <div [innerHTML]="lesson.content"></div>
-    </li>
-  </ul>
+    <!-- Contenido de la lección actual -->
+    <div class="lesson-content" *ngIf="lessons.length > 0">
+      <h2>{{ 'Lección ' + (currentLessonIndex + 1) }}</h2>
+      <div class="lesson-body" [innerHTML]="lessons[currentLessonIndex]?.content"></div>
+    </div>
 
-  <p *ngIf="lessons.length === 0">Este curso no tiene lecciones aún.</p>
+    <!-- Mensaje si no hay lecciones -->
+    <p *ngIf="lessons.length === 0">Este curso no tiene lecciones aún.</p>
+
+    <!-- Botones abajo -->
+    <div class="lesson-footer">
+      <button class="subscribe-btn" (click)="subscribeToCourse()">Subscribirse</button>
+      <button class="next-btn" (click)="nextLesson()" [disabled]="currentLessonIndex >= lessons.length - 1">
+        Siguiente lección
+      </button>
+      <button class="next-btn" (click)="previousLesson()" [disabled]="currentLessonIndex === 0">
+        Lección anterior
+      </button>
+    </div>
+  </div>
 </div>
+

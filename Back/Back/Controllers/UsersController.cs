@@ -1,6 +1,7 @@
 ﻿using Back.Context;
 using Back.DTOs;
 using Back.Models;
+using Back.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,11 +16,16 @@ namespace Back.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+
+        private readonly IUserService _userService;
+        private readonly JwtService _jwtService;
         private readonly AppDbContext _context;
 
-        public UsersController(AppDbContext context)
+        public UsersController(AppDbContext context,IUserService userService, JwtService jwtService)
         {
             _context = context;
+            _userService = userService;
+            _jwtService = jwtService;
         }
 
         // GET: api/Users
@@ -91,14 +97,18 @@ namespace Back.Controllers
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<ActionResult<CreateUserDTO>> PostUser(CreateUserDTO dto)
         {
+            var exists = await _context.Users.AnyAsync(u => u.Email.ToLower() == dto.Email.ToLower());
+
+            if (exists) return BadRequest("Ya existe un usuario con ese correo.");
+
             var user = new User
             {
                 Name = dto.Name,
                 Email = dto.Email,
-                Password = dto.Password // ⚠️ Recomendación: Hashearla antes de guardar
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
             };
 
             _context.Users.Add(user);
@@ -113,6 +123,17 @@ namespace Back.Controllers
 
             return CreatedAtAction(nameof(GetUserWithCourses), new { id = user.Id }, result);
         }
+        [HttpPost("login")]
+        public IActionResult Login(LoginDTO dto)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+                return Unauthorized("Invalid credentials.");
+
+            var token = _jwtService.Generate(user);
+            return Ok(new { token });
+        }
+
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

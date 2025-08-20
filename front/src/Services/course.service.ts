@@ -26,14 +26,12 @@ export class CourseService {
 
   private baseUrl = 'http://localhost:7060/api/Courses';
 
- 
-
-  getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.baseUrl);
+  getAllCourses(): Observable<CourseCreateDTO[]> {
+    return this.http.get<CourseCreateDTO[]>(this.baseUrl);
   }
 
-  getCourse(id: number): Observable<Course> {
-    return this.http.get<Course>(`${this.baseUrl}/${id}`);
+  getCourse(id: number): Observable<CourseCreateDTO> {
+    return this.http.get<CourseCreateDTO>(`${this.baseUrl}/${id}`);
   }
 
   createCourse(course: CourseCreateDTO): Observable<Course> {
